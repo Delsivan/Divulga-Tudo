@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/7a87699a-8538-4b7e-92cf-63927a161ae3/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/divulgatudo",
+    "appService.deploySubpath": "."
+}
