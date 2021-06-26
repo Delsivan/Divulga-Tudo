@@ -13,11 +13,3 @@ Baixe a pasta publish para a máquina local e executar o seguinte comando no ter
 - cd publish && dotnet DivulgaTudo.App.dll
 
 Após a execução do comando o projeto será executado no localhost na porta 5000.
-
-
-
-Link da aplicação publicada no Azure:
-https://divulgatudo.azurewebsites.net/
-
-
-
