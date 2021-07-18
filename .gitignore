@@ -1,0 +1,13 @@
+.vscode
+
+src/DivulgaTudo.App/bin/*
+src/DivulgaTudo.App/obj/*
+src/DivulgaTudo.App/Properties/*
+src/DivulgaTudo.Negocio/bin/*
+src/DivulgaTudo.Negocio/obj/*
+src/DivulgaTudo.Dados/bin/*
+src/DivulgaTudo.Dados/obj/*
+
+src/**/*.csproj.user
+
+.config

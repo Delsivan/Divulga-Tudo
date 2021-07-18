@@ -1,0 +1,66 @@
+﻿@model IEnumerable<DivulgaTudo.Negocio.Entidades.Cliente>
+
+@{
+    ViewData["Title"] = "Lista de Clientes";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<p>
+    <a class="btn btn-info" asp-action="Adicionar">Adicionar cliente</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-warning" asp-action="Atualizar" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a> |
+                    <a class="btn btn-danger deletar" href="javascript:void(0)" data-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                @section Scripts
+                {
+                    <script>
+                        $(document).ready(function () {
+                            let $element = $('.deletar');
+
+                            $element.on('click', function(e) {
+
+                                const confirmacao = confirm('Deseja realmente excluir o cliente?')
+
+                                let id = e.target.dataset.id;
+
+                                if (confirmacao)
+                                {
+                                    $.get(`@Url.Action("Deletar", "Cliente")?id=${id}`, (e) =>
+                                    {
+                                        document.location.reload(true);
+                                    })
+                                }
+
+                            });
+                        });
+                    </script>
+                }

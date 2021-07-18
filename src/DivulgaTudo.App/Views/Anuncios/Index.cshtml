@@ -1,0 +1,91 @@
+﻿@model IEnumerable<DivulgaTudo.App.ViewModels.AnuncioViewModel>
+
+@{
+    ViewData["Title"] = "Lista de Anúncios";
+}
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+
+<p>
+    <a class="btn btn-info" asp-action="Adicionar">Adicionar anúncio</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataFim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InvestimentoPorDia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cliente)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataFim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InvestimentoPorDia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nome)
+                </td>
+                <td class="text-right">
+                    <a class="btn btn-warning" asp-action="Atualizar" asp-route-id="@item.Id"><spam class="fa fa-pencil-alt"></spam></a> |
+                    <a class="btn btn-danger deletar" href="javascript:void(0)" data-id="@item.Id"><spam class="fa fa-trash"></spam></a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            let $element = $('.deletar');
+
+            $element.on('click', function(e) {
+
+                const confirmacao = confirm('Deseja realmente excluir o anúncio?')
+
+                let id = e.target.dataset.id;
+
+                if (confirmacao)
+                {
+                    $.get(`@Url.Action("Deletar", "Anuncios")?id=${id}`, (e) =>
+                    {
+                        document.location.reload(true);
+                    })
+                }
+            });
+        });
+    </script>
+}
+
